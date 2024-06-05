@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Bingo"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="350" Width="525">
     <Grid>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="textBox" Grid.Column="0" Grid.Row="0" Margin="5" HorizontalAlignment="Stretch"/>
+        <Button x:Name="button" Grid.Column="0" Grid.Row="0" Margin="5" HorizontalAlignment="Right" Click="Button_Click">Kártya generálása</Button>
+        <UniformGrid x:Name="uniformGrid" Grid.Column="0" Grid.Row="1" Margin="5" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
     </Grid>
 </Window>

@@ -56,10 +56,56 @@ namespace Bingo
         }
 
 
+        public int JatekosokSzama(List<BingoJatekos> jatekosok)
+        {
+            return jatekosok.Count;
+        }
 
 
 
+        public List<int> Szamhuzasok()
+        {
+            List<int> szamhuzasok = new List<int>();
+            Random random = new Random();
 
+            while (true)
+            {
+                int szam = random.Next(1, 76);
+                if (!szamhuzasok.Contains(szam))
+                {
+                    szamhuzasok.Add(szam);
+                    Console.WriteLine("Kihúzott szám: " + szam);
+                    foreach (BingoJatekos jatekos in jatekosok)
+                    {
+                        jatekos.SorsoltSzamotJelol(szam);
+                        if (jatekos.BingoEll())
+                        {
+                            Console.WriteLine("BINGÓ! A nyertes: " + jatekos.Nev);
+                            return szamhuzasok;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            uniformGrid.Children.Clear();
+            int[,] kartya = GeneraltKartya();
+            for (int i = 0; i < 5; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    TextBox textBox = new TextBox();
+                    textBox.Width = 30;
+                    textBox.Height = 30;
+                    textBox.HorizontalAlignment = HorizontalAlignment.Center;
+                    textBox.VerticalAlignment = VerticalAlignment.Center;
+                    textBox.Text = kartya[i, j].ToString();
+                    uniformGrid.Children.Add(textBox);
+                }
+            }
+        }
     }
 
 
